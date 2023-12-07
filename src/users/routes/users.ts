@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
 import { UsersController } from '../controllers/usersController'
-import { checkUserIdExists } from '../middlewares/check-user-id-exists'
+import { checkUserIdExists } from '../../middlewares/checkUserIdExists'
 
 export async function usersRoutes(app: FastifyInstance) {
   const userController = new UsersController()

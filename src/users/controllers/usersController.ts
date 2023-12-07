@@ -13,8 +13,6 @@ export class UsersController {
     const listUserService = new ListUserService()
     const users = await listUserService.execute()
 
-    console.log('teste', request.cookies)
-
     return response.status(200).send({
       users,
     })
