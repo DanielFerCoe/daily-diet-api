@@ -7,6 +7,7 @@ import { ShowUserService } from '../services/showUserService'
 import { UpdateUserService } from '../services/updateUserService'
 import { UpdateUserPasswordService } from '../services/updateUserPasswordService'
 import { UpdateUserWeightAndHeightService } from '../services/updateUserWeightAndHeightService'
+import { DeleteUserService } from '../services/deleteUserService'
 
 export class UsersController {
   async index(request: FastifyRequest, response: FastifyReply) {
@@ -113,5 +114,19 @@ export class UsersController {
     const user = await updateUserWeightAndHeightService.execute({ ...body, id })
 
     return response.status(200).send({ user })
+  }
+
+  async delete(request: FastifyRequest, response: FastifyReply) {
+    const paramsSchema = z.object({
+      id: z.string().uuid(),
+    })
+
+    const { id } = paramsSchema.parse(request.params)
+
+    const deleteUserService = new DeleteUserService()
+
+    await deleteUserService.execute({ id })
+
+    return response.status(204).send()
   }
 }

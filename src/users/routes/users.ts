@@ -24,4 +24,6 @@ export async function usersRoutes(app: FastifyInstance) {
     { preHandler: [checkUserIdExists] },
     userController.updateHeightAndWeight,
   )
+
+  app.delete('/:id', { preHandler: [checkUserIdExists] }, userController.delete)
 }
