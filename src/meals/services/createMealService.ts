@@ -30,13 +30,17 @@ export class CreateMealService {
       throw new Error('Meal already exists')
     }
 
-    await knex('meals').insert({
-      id: crypto.randomUUID(),
-      name,
-      description,
-      date,
-      inTheDiet,
-      user_id: userId,
-    })
+    const mealCreated = await knex('meals')
+      .insert({
+        id: crypto.randomUUID(),
+        name,
+        description,
+        date,
+        inTheDiet,
+        user_id: userId,
+      })
+      .returning('*')
+
+    return mealCreated
   }
 }

@@ -48,9 +48,11 @@ export class UsersController {
 
     const createUser = new CreateUserService()
 
-    await createUser.execute(body)
+    const user = await createUser.execute(body)
 
-    return response.status(201).send()
+    return response.status(201).send({
+      user,
+    })
   }
 
   async update(request: FastifyRequest, response: FastifyReply) {

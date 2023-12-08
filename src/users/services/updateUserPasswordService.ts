@@ -25,7 +25,7 @@ export class UpdateUserPasswordService {
       .where({
         id,
       })
-      .returning('*')
+      .returning(['id', 'name', 'email', 'weight', 'height', 'created_at'])
 
     return userUpdated
   }

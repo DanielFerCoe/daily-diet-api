@@ -10,7 +10,6 @@ declare module 'knex/types/tables' {
       password: string
       height: number
       weight: number
-      longest_sequence_meals_in_the_diet: number
       created_at: string
     }
     meals: {

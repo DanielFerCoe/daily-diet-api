@@ -49,9 +49,9 @@ export class MealsController {
 
     const createMealService = new CreateMealService()
 
-    await createMealService.execute({ ...body, userId })
+    const meal = await createMealService.execute({ ...body, userId })
 
-    response.status(201).send()
+    response.status(201).send({ meal })
   }
 
   async update(request: FastifyRequest, response: FastifyReply) {

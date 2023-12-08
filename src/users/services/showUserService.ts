@@ -10,7 +10,7 @@ export class ShowUserService {
       .where({
         id,
       })
-      .first()
+      .first(['id', 'name', 'email', 'weight', 'height', 'created_at'])
 
     return user
   }

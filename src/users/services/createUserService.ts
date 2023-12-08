@@ -24,13 +24,17 @@ export class CreateUserService {
 
     const hashedPassword = await hash(password, 8)
 
-    await knex('users').insert({
-      id: crypto.randomUUID(),
-      name,
-      email,
-      password: hashedPassword,
-      height,
-      weight,
-    })
+    const userCreated = await knex('users')
+      .insert({
+        id: crypto.randomUUID(),
+        name,
+        email,
+        password: hashedPassword,
+        height,
+        weight,
+      })
+      .returning(['id', 'name', 'email', 'weight', 'height', 'created_at'])
+
+    return userCreated
   }
 }
