@@ -164,7 +164,7 @@ describe('User routes', () => {
       )
     })
 
-    it.skip('should not be able to show user if user doesnt exist', async () => {
+    it('should not be able to show user if user doesnt exist', async () => {
       const { name, email, height, password, weight } = createUserMock
 
       /* Create User */
@@ -270,7 +270,7 @@ describe('User routes', () => {
         .expect(400)
     })
 
-    it.skip('should not be able to update user if  user doesnt exist', async () => {
+    it('should not be able to update user if  user doesnt exist', async () => {
       const wrongId = '202f8c1b-8eee-44eb-a7df-bfbc26c7b691'
 
       await request(app.server)
@@ -287,8 +287,6 @@ describe('User routes', () => {
       const updateUser = {
         name: 'User Test Updated',
         email: 'userTestUpdated@email.com',
-        height: 1.8,
-        weight: 80,
       }
 
       const responseUpdatePasswordUser = await request(app.server)
@@ -300,12 +298,12 @@ describe('User routes', () => {
         })
         .expect(200)
 
-      expect(responseUpdatePasswordUser.body.user).toEqual([
+      expect(responseUpdatePasswordUser.body.user).toEqual(
         expect.objectContaining({
           name: updateUser.name,
           email: updateUser.email,
         }),
-      ])
+      )
     })
   })
 
@@ -348,14 +346,14 @@ describe('User routes', () => {
         })
         .expect(200)
 
-      expect(responseUpdatePasswordUser.body.user).toEqual([
+      expect(responseUpdatePasswordUser.body.user).toEqual(
         expect.objectContaining({
           name,
           email,
           height,
           weight,
         }),
-      ])
+      )
     })
 
     it('should not be able to update user password if cookie userId is invalid', async () => {
@@ -412,14 +410,14 @@ describe('User routes', () => {
         })
         .expect(200)
 
-      expect(responseUpdatePasswordUser.body.user).toEqual([
+      expect(responseUpdatePasswordUser.body.user).toEqual(
         expect.objectContaining({
           name,
           email,
           height: updateWeightAndHeightMock.newHeight,
           weight: updateWeightAndHeightMock.newWeight,
         }),
-      ])
+      )
     })
 
     it('should not be able to update user height and weight without height', async () => {
@@ -463,7 +461,7 @@ describe('User routes', () => {
     })
   })
 
-  describe('Update User Height and Weight', async () => {
+  describe('Delete User', async () => {
     const { name, email, height, password, weight } = createUserMock
 
     let userCreated: User | null = null

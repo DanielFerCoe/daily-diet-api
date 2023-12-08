@@ -16,7 +16,7 @@ export class UpdateUserWeightAndHeightService {
 
     if (!user) throw new Error('User not found!')
 
-    const userUpdated = await knex('users')
+    const [userUpdated] = await knex('users')
       .update({
         height,
         weight,

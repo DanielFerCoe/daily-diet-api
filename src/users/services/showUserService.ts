@@ -12,6 +12,10 @@ export class ShowUserService {
       })
       .first(['id', 'name', 'email', 'weight', 'height', 'created_at'])
 
+    if (!user) {
+      throw new Error('User not found')
+    }
+
     return user
   }
 }

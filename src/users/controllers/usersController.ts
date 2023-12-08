@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-import { ListUserService } from '../services/listUserService'
 import { CreateUserService } from '../services/createUserService'
 import { ShowUserService } from '../services/showUserService'
 import { UpdateUserService } from '../services/updateUserService'
@@ -10,15 +9,6 @@ import { UpdateUserWeightAndHeightService } from '../services/updateUserWeightAn
 import { DeleteUserService } from '../services/deleteUserService'
 
 export class UsersController {
-  async index(request: FastifyRequest, response: FastifyReply) {
-    const listUserService = new ListUserService()
-    const users = await listUserService.execute()
-
-    return response.status(200).send({
-      users,
-    })
-  }
-
   async show(request: FastifyRequest, response: FastifyReply) {
     const paramsSchema = z.object({
       id: z.string().uuid(),

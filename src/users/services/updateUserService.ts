@@ -10,15 +10,25 @@ export class UpdateUserService {
   async execute({ id, email, name }: UpdateUserProps) {
     const user = await knex('users')
       .where({
+        id,
+      })
+      .first()
+
+    const existsUserWithEmail = await knex('users')
+      .where({
         email,
       })
       .first()
 
-    if (user && user.email !== email) {
+    if (!user) {
+      throw new Error('User not found')
+    }
+
+    if (existsUserWithEmail && user.email !== email) {
       throw new Error('Email already exists')
     }
 
-    const userUpdated = await knex('users')
+    const [userUpdated] = await knex('users')
       .update({
         name,
         email,

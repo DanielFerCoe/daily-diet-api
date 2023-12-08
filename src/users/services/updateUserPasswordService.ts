@@ -18,7 +18,7 @@ export class UpdateUserPasswordService {
 
     const hashedPassword = await hash(password, 8)
 
-    const userUpdated = await knex('users')
+    const [userUpdated] = await knex('users')
       .update({
         password: hashedPassword,
       })

@@ -7,8 +7,6 @@ export async function usersRoutes(app: FastifyInstance) {
 
   app.post('/', userController.create)
 
-  app.get('/', { preHandler: [checkUserIdExists] }, userController.index)
-
   app.get('/:id', { preHandler: [checkUserIdExists] }, userController.show)
 
   app.put('/:id', { preHandler: [checkUserIdExists] }, userController.update)
