@@ -2,9 +2,9 @@ import { User } from '../models/user'
 
 export function categoryIMC(imc: number) {
   const categories: Record<string, boolean> = {
-    'Underweight': imc < 18.5,
+    Underweight: imc < 18.5,
     'Normal weight': imc >= 18.5 && imc <= 24.9,
-    'Overweight': imc >= 25 && imc <= 29.9,
+    Overweight: imc >= 25 && imc <= 29.9,
     'Obesity Class I': imc >= 30 && imc <= 34.9,
     'Obesity Class II': imc >= 35 && imc <= 39.9,
     'Obesity Class III (Morbid Obesity)': imc >= 40,
