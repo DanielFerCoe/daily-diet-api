@@ -5,7 +5,7 @@ import request from 'supertest'
 import { app } from '../src/app'
 import { createUserMock } from './mocks/createUserMock'
 
-describe.skip('Session routes', () => {
+describe('Session routes', () => {
   beforeAll(async () => {
     await app.ready()
   })

@@ -29,7 +29,7 @@ export class UpdateMealService {
       throw new Error('Meal not found!')
     }
 
-    const mealUpdated = await knex('meals')
+    const [mealUpdated] = await knex('meals')
       .update({
         name,
         description,
@@ -38,6 +38,8 @@ export class UpdateMealService {
       })
       .where({ id })
       .returning('*')
+
+    if (mealUpdated) mealUpdated.date = new Date(mealUpdated.date)
 
     return mealUpdated
   }

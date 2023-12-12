@@ -20,6 +20,8 @@ export class ShowMealService {
 
     const meal = await knex('meals').select().where({ id }).first()
 
+    if (meal) meal.date = new Date(meal.date)
+
     return meal
   }
 }

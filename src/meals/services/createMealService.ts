@@ -30,7 +30,7 @@ export class CreateMealService {
       throw new Error('Meal already exists')
     }
 
-    const mealCreated = await knex('meals')
+    const [mealCreated] = await knex('meals')
       .insert({
         id: crypto.randomUUID(),
         name,
@@ -40,6 +40,8 @@ export class CreateMealService {
         user_id: userId,
       })
       .returning('*')
+
+    if (mealCreated) mealCreated.date = new Date(mealCreated.date)
 
     return mealCreated
   }
