@@ -187,7 +187,7 @@ describe('Meals routes', async () => {
   })
 
   describe('Update meal', async () => {
-    it('should not be able to show meal if meal doesnt exist', async () => {
+    it('should not be able to update meal if meal doesnt exist', async () => {
       const mealUpdateMock = createMealMock[1]
 
       const wrongId = '202f8c1b-8eee-44eb-a7df-bfbc26c7b691'
