@@ -7,7 +7,10 @@
     "dev": "tsx watch src/server.ts",
     "knex": "node --no-warnings --loader tsx ./node_modules/knex/bin/cli.js",
     "lint": "eslint src --ext .ts --fix",
-    "test": "vitest"
+    "test-meal": "vitest ./test/meal.spec.ts",
+    "test-session": "vitest ./test/session.spec.ts",
+    "test-summary": "vitest ./test/summary.spec.ts",
+    "test-user": "vitest ./test/user.spec.ts"
   },
   "author": "DanielFercoe",
   "license": "ISC",

@@ -5,7 +5,7 @@ import request from 'supertest'
 import { app } from '../src/app'
 import { createUserMock } from './mocks/createUserMock'
 
-describe('Session routes', () => {
+describe('Session routes', async () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -20,7 +20,7 @@ describe('Session routes', () => {
   })
 
   it('should be able to create a new session', async () => {
-    const { name, email, height, password, weight } = createUserMock
+    const { name, email, height, password, weight } = createUserMock[0]
 
     await request(app.server).post('/users').send({
       name,
@@ -41,7 +41,7 @@ describe('Session routes', () => {
   })
 
   it('should not be able to create a new session with wrong password', async () => {
-    const { name, email, height, password, weight } = createUserMock
+    const { name, email, height, password, weight } = createUserMock[0]
 
     await request(app.server).post('/users').send({
       name,
@@ -63,7 +63,7 @@ describe('Session routes', () => {
   })
 
   it('should not be able to create a new session with wrong email', async () => {
-    const { name, email, height, password, weight } = createUserMock
+    const { name, email, height, password, weight } = createUserMock[0]
 
     await request(app.server).post('/users').send({
       name,

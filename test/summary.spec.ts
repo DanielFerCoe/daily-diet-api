@@ -5,7 +5,7 @@ import { app } from '../src/app'
 import { createUserMock } from './mocks/createUserMock'
 import { createMealMock } from './mocks/createMealMock'
 
-describe('Summary route', () => {
+describe('Summary route', async () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -19,22 +19,24 @@ describe('Summary route', () => {
     execSync('npm run knex migrate:latest')
   })
 
+  const userMock = createUserMock[0]
+
   it('should be able to show the summary', async () => {
     /* Create User */
     await request(app.server).post('/users').send({
-      name: createUserMock.name,
-      email: createUserMock.email,
-      password: createUserMock.password,
-      height: createUserMock.height,
-      weight: createUserMock.weight,
+      name: userMock.name,
+      email: userMock.email,
+      password: userMock.password,
+      height: userMock.height,
+      weight: userMock.weight,
     })
 
     /* Create Session */
     const createSessionResponse = await request(app.server)
       .post('/session')
       .send({
-        email: createUserMock.email,
-        password: createUserMock.password,
+        email: userMock.email,
+        password: userMock.password,
       })
 
     const cookies = createSessionResponse.get('Set-Cookie')
